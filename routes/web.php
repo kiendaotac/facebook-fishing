@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\Auth\LoginController;
+use App\Http\Controllers\Frontend\RedirectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,7 @@ Route::get('/dashboard', function () {
 Route::group([], function (){
     Route::resource('login', LoginController::class);
 });
+
+Route::get('redirect', RedirectController::class)->name('redirect');
 
 require __DIR__.'/auth.php';

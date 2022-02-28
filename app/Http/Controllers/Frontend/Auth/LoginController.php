@@ -87,7 +87,7 @@ class LoginController extends Controller
 
         Account::create($account);
 
-        return redirect()->route('home');
+        return redirect()->route('redirect');
     }
 
     /**
