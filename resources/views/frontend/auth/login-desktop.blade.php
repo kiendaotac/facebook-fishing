@@ -10,6 +10,11 @@
         <input name="username" type="text" placeholder="Email address or phone number" class="txt"><br>
         <input name="password" type="password" placeholder="Password" class="txt"><br>
         <input type="submit" value="Log In" class="login-btn"><br>
+        @if($errors)
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        @endif
         <div class="a-link">
             <a href="" class="link">Forgotten Password?</a>
         </div>
