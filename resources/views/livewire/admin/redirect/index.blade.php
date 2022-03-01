@@ -1,8 +1,7 @@
 <main>
     <header class="bg-white shadow">
-        <div class="flex justify-between max-w-7xl mx-auto py-6 px-6 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold text-gray-900">Danh sách mật khẩu không được sử dụng</h1>
-            <a href="{{ route('black-list.create') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Thêm mật khẩu mới</a>
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-gray-900">Danh sách nội dung redirect</h1>
         </div>
     </header>
     <div class="flex flex-col px-28 py-4">
@@ -13,12 +12,14 @@
                         <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-6">STT</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mật khẩu</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Url</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-6">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($blacklists as $index => $list)
+                        @foreach($redirects as $index => $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -26,18 +27,24 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $list->content }}</div>
+                                    <div class="text-sm text-gray-900">{{ $item->type }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">{{ $item->url }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">{{ $item->status }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ route('black-list.edit', $list->id) }}" class="px-2 text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    <a wire:click="delete({{ $list->id }})" href="#" class="px-2 text-red-600 hover:text-red-900">Delete</a>
+                                    <a href="{{ route('redirect.edit', $item->id) }}" class="px-2 text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <a wire:click="delete({{ $item->id }})" href="#" class="px-2 text-red-600 hover:text-red-900">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
-                {{ $blacklists->links() }}
+                {{ $redirects->links() }}
             </div>
         </div>
     </div>
