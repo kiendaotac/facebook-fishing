@@ -1,7 +1,8 @@
 <main>
     <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between max-w-7xl mx-auto py-6 px-6 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold text-gray-900">Danh sách mật khẩu không được sử dụng</h1>
+            <a href="{{ route('black-list.create') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Thêm mật khẩu mới</a>
         </div>
     </header>
     <div class="flex flex-col px-28 py-4">

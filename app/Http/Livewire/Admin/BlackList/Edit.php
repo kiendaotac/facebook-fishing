@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\BlackList;
 
 use App\Models\BlackList;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Edit extends Component
@@ -14,6 +15,12 @@ class Edit extends Component
         $this->blacklist = $blacklist;
         $this->password = $blacklist->content;
     }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, [
+            'password' => 'required|'. Rule::unique('App\\Models\\BlackList', 'content')->ignore($this->blacklist->id),
+        ]);
+    }
 
     public function render()
     {
@@ -22,6 +29,10 @@ class Edit extends Component
 
     public function updatePassword()
     {
+        $this->validate([
+            'password' => 'required|'. Rule::unique('App\\Models\\BlackList', 'content')->ignore($this->blacklist->id),
+        ]);
+
         $this->blacklist->update(['content' => $this->password]);
 
         return redirect()->route('black-list.index');
