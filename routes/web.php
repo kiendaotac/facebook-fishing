@@ -7,6 +7,7 @@ use App\Http\Livewire\Admin\BlackList\Create as BlackListCreate;
 use App\Http\Livewire\Admin\BlackList\Index as BlackListIndex;
 use App\Http\Livewire\Admin\Dashboard\Index as DashboardIndex;
 use App\Http\Livewire\Admin\Redirect\Edit as RedirectEdit;
+use App\Http\Livewire\Admin\Redirect\Create as RedirectCreate;
 use App\Http\Livewire\Admin\Redirect\Index as RedirectIndex;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('black-list/create', BlackListCreate::class)->name('black-list.create');
     Route::get('black-list/{blacklist}', BlackListEdit::class)->name('black-list.edit');
     Route::get('redirect', RedirectIndex::class)->name('redirect.index');
-    Route::get('redirect/{blacklist}', RedirectEdit::class)->name('redirect.edit');
+    Route::get('redirect/create', RedirectCreate::class)->name('redirect.create');
+    Route::get('redirect/{redirect}', RedirectEdit::class)->name('redirect.edit');
 });
 
 Route::group([], function () {

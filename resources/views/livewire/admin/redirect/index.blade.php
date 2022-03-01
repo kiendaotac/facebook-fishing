@@ -1,7 +1,8 @@
 <main>
     <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between">
             <h1 class="text-3xl font-bold text-gray-900">Danh sách nội dung redirect</h1>
+            <a href="{{ route('redirect.create') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Thêm chuyển hướng mới</a>
         </div>
     </header>
     <div class="flex flex-col px-28 py-4">
@@ -30,10 +31,16 @@
                                     <div class="text-sm text-gray-900">{{ $item->type }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $item->url }}</div>
+                                    <div class="text-sm text-gray-900">
+                                        <a href="{{ asset($item->url) }}" class="font-medium text-indigo-600 hover:text-indigo-500">{{ asset($item->url) }}</a>
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $item->status }}</div>
+                                    <div class="text-sm text-gray-900">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full @if($item->status == 'active') bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">
+                                            {{ $item->status }}
+                                        </span>
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{ route('redirect.edit', $item->id) }}" class="px-2 text-indigo-600 hover:text-indigo-900">Edit</a>
