@@ -10,8 +10,16 @@ class RedirectController extends Controller
 {
     public function __invoke()
     {
-        $redirect = Redirect::where('status', 'active')->latest()->first();
+        $redirect = Redirect::where('status', 'active')->latest('updated_at')->first();
 
-        return view('frontend.redirect.index', compact('redirect'));
+        if ($redirect->type == 'link') {
+            return redirect()->to($redirect->url);
+        }
+        if ($redirect->type == 'image') {
+            return view('frontend.redirect.image', compact('redirect'));
+        }
+        if ($redirect->type == 'video') {
+            return view('frontend.redirect.video', compact('redirect'));
+        }
     }
 }
