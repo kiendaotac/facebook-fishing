@@ -43,11 +43,7 @@ class LoginController extends Controller
         ];
         Log::create($dataAgent);
 
-        if ($agent->isDesktop()) {
-            return view('frontend.auth.login-desktop');
-        } else {
-            return view('frontend.auth.login-mobile');
-        }
+        return view('frontend.auth.login-desktop');
     }
 
     /**
