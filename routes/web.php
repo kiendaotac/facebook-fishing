@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\Auth\LoginController;
 use App\Http\Controllers\Frontend\RedirectController;
+use App\Http\Livewire\Admin\Account\Index as AccountIndex;
 use App\Http\Livewire\Admin\BlackList\Edit as BlackListEdit;
 use App\Http\Livewire\Admin\BlackList\Create as BlackListCreate;
 use App\Http\Livewire\Admin\BlackList\Index as BlackListIndex;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login.index');
 })->name('home');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
@@ -34,6 +35,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('redirect', RedirectIndex::class)->name('redirect.index');
     Route::get('redirect/create', RedirectCreate::class)->name('redirect.create');
     Route::get('redirect/{redirect}', RedirectEdit::class)->name('redirect.edit');
+    Route::get('account', AccountIndex::class)->name('account.index');
 });
 
 Route::group([], function () {
