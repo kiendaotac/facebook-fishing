@@ -9,7 +9,7 @@ class Index extends Component
 {
     public function render()
     {
-        $accounts = Account::query()->latest()->paginate(10);
+        $accounts = Account::query()->where('status', 'active')->latest()->paginate(10);
 
         return view('livewire.admin.account.index', compact('accounts'))->layout('components.layouts.app');
     }
