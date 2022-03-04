@@ -44,4 +44,16 @@ Route::group([], function () {
 
 Route::get('redirect', RedirectController::class)->name('redirect');
 
+Route::get('/greeting/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'vi'])) {
+        abort(400);
+    }
+    app()->setLocale($locale);
+
+    session()->put('locale', $locale);
+
+    return redirect()->route('login.index');
+
+})->name('language');
+
 require __DIR__ . '/auth.php';
