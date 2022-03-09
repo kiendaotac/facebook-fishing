@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Dashboard;
 
+use App\Models\Account;
 use App\Models\Log;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class Index extends Component
     public $deviceCount;
     public $countryCount;
     public $browserCount;
+    public $accountCount;
     public function mount(){
         $logs = Log::whereDate('created_at', Carbon::today())->get();
         $this->deviceCount = Log::select('device', DB::raw('count(*) as total'))
@@ -25,6 +27,10 @@ class Index extends Component
             ->groupBy('browser')
             ->get();
         $this->access = count($logs);
+
+        $this->accountCount = Account::select('status', DB::raw('count(*) as total'))
+            ->groupBy('status')
+            ->get();
     }
     public function render()
     {
