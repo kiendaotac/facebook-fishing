@@ -10,6 +10,9 @@ use App\Http\Livewire\Admin\Dashboard\Index as DashboardIndex;
 use App\Http\Livewire\Admin\Redirect\Edit as RedirectEdit;
 use App\Http\Livewire\Admin\Redirect\Create as RedirectCreate;
 use App\Http\Livewire\Admin\Redirect\Index as RedirectIndex;
+use App\Http\Livewire\Admin\Notification\Index as NotificationIndex;
+use App\Http\Livewire\Admin\Notification\Create as NotificationCreate;
+use App\Http\Livewire\Admin\Notification\Edit as NotificationEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +39,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('redirect/create', RedirectCreate::class)->name('redirect.create');
     Route::get('redirect/{redirect}', RedirectEdit::class)->name('redirect.edit');
     Route::get('account', AccountIndex::class)->name('account.index');
+    Route::get('notification', NotificationIndex::class)->name('notification.index');
+    Route::get('notification/create', NotificationCreate::class)->name('notification.create');
+    Route::get('notification/{notification}', NotificationEdit::class)->name('notification.edit');
 });
 
 Route::group([], function () {

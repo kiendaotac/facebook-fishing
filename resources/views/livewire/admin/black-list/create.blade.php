@@ -33,10 +33,10 @@
     </div>
 </main>
 @push('css')
-    <link href="https://unpkg.com/@tailwindcss/forms/dist/forms.min.css" rel="stylesheet">
+    <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
 @endpush
 @push('js')
-    <script>
+    <script type="module">
         module.exports = {
             // ...
             plugins: [

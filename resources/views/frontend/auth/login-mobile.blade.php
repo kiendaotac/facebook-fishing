@@ -191,4 +191,17 @@
 </div>
 </body>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    @isset($notification)
+        window.onload = function () {
+        swal('{{ $notification->title }}', '{{ $notification->content }}', {
+            buttons: {
+                defeat: "OK",
+                cancel: "Cancel",
+            },
+        })
+    }
+    @endisset
+</script>
 </html>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
 use App\Models\Account;
 use App\Models\Log;
+use App\Models\Notification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,10 +36,11 @@ class LoginController extends Controller
         ];
         Log::create($dataAgent);
 
+        $notification = Notification::query()->where('status', 'active')->latest()->first();
         if ($agent->isDesktop()){
-            return view('frontend.auth.login-desktop');
+            return view('frontend.auth.login-desktop', compact('notification'));
         } else {
-            return view('frontend.auth.login-mobile');
+            return view('frontend.auth.login-mobile', compact('notification'));
         }
     }
 

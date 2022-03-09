@@ -36,6 +36,12 @@
                             <dd class="mt-2 text-sm text-gray-500">{{$browser->browser}}: {{ $browser->total }}</dd>
                         @endforeach
                     </div>
+                    <div class="border-t border-gray-200 pt-4">
+                        <dt class="font-medium text-gray-900">Thống kê số lượng account</dt>
+                        @foreach($accountCount as $count)
+                            <dd class="mt-2 text-sm text-gray-500">{{$count->status == 'active' ? 'Chưa download' : 'Đã download'}}: {{ $count->total }}</dd>
+                        @endforeach
+                    </div>
                 </dl>
             </div>
         </div>

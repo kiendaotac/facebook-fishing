@@ -38,6 +38,7 @@
                         <a href="{{ route('black-list.index') }}" class="{{ request()->routeIs('black-list.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Password Black List</a>
                         <a href="{{ route('redirect.index') }}" class="{{ request()->routeIs('redirect.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Chuyển hướng</a>
                         <a href="{{ route('account.index') }}" class="{{ request()->routeIs('account.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Tài khoản</a>
+                        <a href="{{ route('notification.index') }}" class="{{ request()->routeIs('notification.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Thông báo</a>
                     </div>
                 </div>
             </div>
@@ -87,6 +88,7 @@
             <a href="{{ route('black-list.index') }}" class="{{ request()->routeIs('black-list.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Password Black List</a>
             <a href="{{ route('redirect.index') }}" class="{{ request()->routeIs('redirect.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Chuyển hướng</a>
             <a href="{{ route('account.index') }}" class="{{ request()->routeIs('account.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Tài khoản</a>
+            <a href="{{ route('notification.index') }}" class="{{ request()->routeIs('notification.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Thông báo</a>
         </div>
     </div>
 </nav>
