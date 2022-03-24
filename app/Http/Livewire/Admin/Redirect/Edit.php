@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Redirect;
 
 use App\Models\Redirect;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -43,7 +44,7 @@ class Edit extends Component
         }
         $redirect->update([
             'type'   => $this->type,
-            'url'    => $this->url,
+            'url'    => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->url,'storage') : $this->url,
             'data'   => $this->data,
             'status' => $this->status
         ]);
