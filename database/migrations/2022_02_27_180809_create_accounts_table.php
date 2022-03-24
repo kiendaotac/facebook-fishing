@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('ip')->nullable();
             $table->string('address')->nullable();
             $table->string('user_agent')->nullable();
-            $table->json('request')->nullable();
-            $table->json('ip_info')->nullable();
+            $table->longText('request')->nullable();
+            $table->longText('ip_info')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

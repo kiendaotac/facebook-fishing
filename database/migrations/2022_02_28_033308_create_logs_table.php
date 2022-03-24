@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('region');
             $table->string('city');
             $table->string('browser');
-            $table->json('data');
+            $table->longText('data');
             $table->string('status')->default('active');
             $table->timestamps();
         });
