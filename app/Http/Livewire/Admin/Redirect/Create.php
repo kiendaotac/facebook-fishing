@@ -35,7 +35,7 @@ class Create extends Component
         }
         Redirect::create([
             'type'   => $this->type,
-            'url'    => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->url,'storage') : $this->url,
+            'url'    => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->url,'storage/') : $this->url,
             'data'   => $this->data,
             'status' => $this->status
         ]);
