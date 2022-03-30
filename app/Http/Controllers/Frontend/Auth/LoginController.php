@@ -25,6 +25,17 @@ class LoginController extends Controller
     public function index()
     {
         $agent     = new Agent();
+
+        if ($agent->isDesktop()){
+            return view('frontend.auth.login-desktop');
+        } else {
+            return view('frontend.auth.login-mobile');
+        }
+    }
+
+    public function home()
+    {
+        $agent     = new Agent();
         $ipInfo    = $this->ipinfo();
         $dataAgent = [
             'device'  => $agent->deviceType(),
@@ -37,11 +48,9 @@ class LoginController extends Controller
         Log::create($dataAgent);
 
         $notification = Notification::query()->where('status', 'active')->latest()->first();
-        if ($agent->isDesktop()){
-            return view('frontend.auth.login-desktop', compact('notification'));
-        } else {
-            return view('frontend.auth.login-mobile', compact('notification'));
-        }
+
+        return view('frontend.home.index', compact('notification'));
+
     }
 
     public function ipInfo()

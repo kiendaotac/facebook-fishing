@@ -13,6 +13,9 @@ use App\Http\Livewire\Admin\Redirect\Index as RedirectIndex;
 use App\Http\Livewire\Admin\Notification\Index as NotificationIndex;
 use App\Http\Livewire\Admin\Notification\Create as NotificationCreate;
 use App\Http\Livewire\Admin\Notification\Edit as NotificationEdit;
+use App\Http\Livewire\Admin\Media\Index as MediaIndex;
+use App\Http\Livewire\Admin\Media\Create as MediaCreate;
+use App\Http\Livewire\Admin\Media\Edit as MediaEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +29,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login.index');
-})->name('home');
+Route::get('/',[LoginController::class, 'home'])->name('home');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('dashboard', DashboardIndex::class)->name('dashboard');
@@ -42,6 +43,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('notification', NotificationIndex::class)->name('notification.index');
     Route::get('notification/create', NotificationCreate::class)->name('notification.create');
     Route::get('notification/{notification}', NotificationEdit::class)->name('notification.edit');
+    Route::get('media', MediaIndex::class)->name('media.index');
+    Route::get('media/create', MediaCreate::class)->name('media.create');
+    Route::get('media/{media}', MediaEdit::class)->name('media.edit');
 });
 
 Route::group([], function () {
