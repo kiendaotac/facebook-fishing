@@ -13,4 +13,9 @@ class Index extends Component
 
         return view('livewire.admin.redirect.index', compact('redirects'))->layout('components.layouts.app');
     }
+
+    public function delete(Redirect $blackList)
+    {
+        $blackList->delete();
+    }
 }

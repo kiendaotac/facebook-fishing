@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
 use App\Models\Account;
 use App\Models\Log;
+use App\Models\Media;
 use App\Models\Notification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -49,7 +50,9 @@ class LoginController extends Controller
 
         $notification = Notification::query()->where('status', 'active')->latest()->first();
 
-        return view('frontend.home.index', compact('notification'));
+        $media = Media::where('status', 'active')->latest('updated_at')->first();
+
+        return view('frontend.home.index', compact('notification', 'media'));
 
     }
 

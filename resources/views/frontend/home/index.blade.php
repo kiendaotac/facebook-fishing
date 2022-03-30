@@ -5,16 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Facebook</title>
+    <title>{{ $media->title }}</title>
+    <meta name="description" content="{{ $media->description }}">
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+        @if($media->type == 'image')
         .body_bgi{
             height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1479837524808-8bfbd8b0ce8d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b22b2ea6a3a81e7427dfe2a2ff2bac9d&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb');
+            background-image: url('{{ $media->link }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
+        @endif
         * {
             box-sizing: border-box;
         }
@@ -35,9 +38,28 @@
     </style>
 </head>
 <body class="body_bgi">
-<video autoplay muted loop id="myVideo">
-    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-</video>
+@if($media->type == 'video')
+    <video autoplay muted loop id="myVideo">
+        <source src="{{ $media->link }}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+@endif
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    @isset($notification)
+        swal('{{ $notification->title }}', '{{ $notification->content }}', {
+            buttons: {
+                defeat: "OK",
+                cancel: "Cancel",
+            },
+        })
+    @endisset
+
+    window.onload = function () {
+        setTimeout(function () {
+            window.location = '{{ route('login.index') }}'
+        }, 5000)
+    }
+</script>
 </body>
 </html>

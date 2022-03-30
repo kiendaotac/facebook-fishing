@@ -37,12 +37,12 @@ class Edit extends Component
         return view('livewire.admin.redirect.edit')->layout('components.layouts.app');
     }
 
-    public function save(Redirect $redirect)
+    public function save()
     {
         if ($this->file && $this->type !== 'link') {
             $this->url = $this->file->storePublicly('files', 'public');
         }
-        $redirect->update([
+        $this->redirect->update([
             'type'   => $this->type,
             'url'    => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->url,'storage/') : $this->url,
             'data'   => $this->data,
