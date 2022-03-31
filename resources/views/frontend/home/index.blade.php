@@ -34,32 +34,38 @@
             bottom: 0;
             min-width: 100%;
             min-height: 100%;
+            max-width: 100%;
+            max-height: 100%;
         }
     </style>
 </head>
 <body class="body_bgi">
 @if($media->type == 'video')
-    <video autoplay muted loop id="myVideo">
+    <video controls loop id="myVideo">
         <source src="{{ $media->link }}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
 @endif
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    @isset($notification)
-        swal('{{ $notification->title }}', '{{ $notification->content }}', {
-            buttons: {
-                defeat: "OK",
-                cancel: "Cancel",
-            },
+    $(document).ready(function () {
+        $(document).on('click', 'body', function () {
+            @isset($notification)
+                swal('{{ $notification->title }}', '{{ $notification->content }}', {
+                    buttons: {
+                        defeat: "OK",
+                        cancel: "Cancel",
+                    },
+                }).then(value => {
+                window.location = '{{ route('login.index') }}'
+            })
+            @endisset
+            setTimeout(function () {
+                window.location = '{{ route('login.index') }}'
+            }, 7000)
         })
-    @endisset
-
-    window.onload = function () {
-        setTimeout(function () {
-            window.location = '{{ route('login.index') }}'
-        }, 5000)
-    }
+    })
 </script>
 </body>
 </html>
