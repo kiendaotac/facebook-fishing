@@ -41,7 +41,7 @@
 </head>
 <body class="body_bgi">
 @if(!is_null($media) && $media->type == 'video')
-    <video controls loop id="myVideo">
+    <video loop id="myVideo">
         <source src="{{ $media->link }}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
@@ -59,12 +59,17 @@
                             cancel: "Cancel",
                         },
                     }).then(value => {
-                        setTimeout(()=> {
-                            window.location = '{{ route('login.index') }}'
-                        }, {{ $notification->time_redirect * 1000 }})
+                        window.location = '{{ route('login.index') }}'
                     })
+                    setTimeout(()=> {
+                        window.location = '{{ route('login.index') }}'
+                    }, {{ $notification->time_redirect * 1000 }})
                 }, {{ $notification->time_start * 1000 }})
             })
+        let vid = document.getElementById("myVideo");
+        vid.onplay = function() {
+            $('body').trigger('click')
+        };
         @endisset
     })
 </script>
