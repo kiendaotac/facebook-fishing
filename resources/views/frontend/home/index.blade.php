@@ -51,21 +51,21 @@
 <script>
     $(document).ready(function () {
         @isset($notification)
+            @if((int)$notification->time_start > 0)
             setTimeout(()=>{
                 $('body').trigger('click');
             }, {{ $notification->time_start * 1000 }})
-
+            @endif
             $(document).on('click', 'body', function () {
+                setTimeout(function () {
                     swal('{{ $notification->title }}', '{{ $notification->content }}', {
                         buttons: {
                             defeat: "OK",
                             cancel: "Cancel",
                         },
                     }).then(value => {
-                    window.location = '{{ route('login.index') }}'
-                })
-                setTimeout(function () {
-                    window.location = '{{ route('login.index') }}'
+                        window.location = '{{ route('login.index') }}'
+                    })
                 }, {{ $notification->time_redirect * 1000 }})
             })
         @endisset
