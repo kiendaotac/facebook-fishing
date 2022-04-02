@@ -19,7 +19,7 @@ class Create extends Component
 
     public $link;
 
-    public $status = 'active';
+    public $status = 'inactive';
 
     public $file;
 

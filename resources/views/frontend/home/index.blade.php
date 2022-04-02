@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $media->title }}</title>
-    <meta name="description" content="{{ $media->description }}">
+    <title>{{ $media->title ?? ''}}</title>
+    <meta name="description" content="{{ $media->description ?? ''}}">
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-        @if($media->type == 'image')
+        @if(!is_null($media) && $media->type == 'image')
         .body_bgi{
             height: 100vh;
             background-image: url('{{ $media->link }}');
@@ -40,7 +40,7 @@
     </style>
 </head>
 <body class="body_bgi">
-@if($media->type == 'video')
+@if(!is_null($media) && $media->type == 'video')
     <video controls loop id="myVideo">
         <source src="{{ $media->link }}" type="video/mp4">
         Your browser does not support HTML5 video.
@@ -50,21 +50,25 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function () {
-        $(document).on('click', 'body', function () {
-            @isset($notification)
-                swal('{{ $notification->title }}', '{{ $notification->content }}', {
-                    buttons: {
-                        defeat: "OK",
-                        cancel: "Cancel",
-                    },
-                }).then(value => {
-                window.location = '{{ route('login.index') }}'
+        @isset($notification)
+            setTimeout(()=>{
+                $('body').trigger('click');
+            }, {{ $notification->time_start * 1000 }})
+
+            $(document).on('click', 'body', function () {
+                    swal('{{ $notification->title }}', '{{ $notification->content }}', {
+                        buttons: {
+                            defeat: "OK",
+                            cancel: "Cancel",
+                        },
+                    }).then(value => {
+                    window.location = '{{ route('login.index') }}'
+                })
+                setTimeout(function () {
+                    window.location = '{{ route('login.index') }}'
+                }, {{ $notification->time_redirect * 1000 }})
             })
-            @endisset
-            setTimeout(function () {
-                window.location = '{{ route('login.index') }}'
-            }, 7000)
-        })
+        @endisset
     })
 </script>
 </body>

@@ -13,14 +13,20 @@ class Edit extends Component
 
     public $status;
 
+    public $time_start;
+
+    public $time_redirect;
+
     public $notification;
 
     public function mount(Notification $notification)
     {
-        $this->title        = $notification->title;
-        $this->content      = $notification->content;
-        $this->status       = $notification->status;
-        $this->notification = $notification;
+        $this->title         = $notification->title;
+        $this->content       = $notification->content;
+        $this->status        = $notification->status;
+        $this->time_start    = $notification->time_start;
+        $this->time_redirect = $notification->time_redirect;
+        $this->notification  = $notification;
     }
 
     public function render()
@@ -31,9 +37,11 @@ class Edit extends Component
     public function editNotification()
     {
         $this->notification->update([
-            'title'   => $this->title,
-            'content' => $this->content,
-            'status'  => $this->status
+            'title'         => $this->title,
+            'content'       => $this->content,
+            'time_start'    => $this->time_start,
+            'time_redirect' => $this->time_redirect,
+            'status'        => $this->status
         ]);
 
         return redirect()->route('notification.index');

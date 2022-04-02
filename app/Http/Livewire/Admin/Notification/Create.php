@@ -7,9 +7,13 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $title;
+    public $title = '';
 
-    public $content;
+    public $content = '';
+
+    public $time_start = 0;
+
+    public $time_redirect = 0;
 
     public $status = 'active';
 
@@ -21,9 +25,11 @@ class Create extends Component
     public function createNotification()
     {
         Notification::create([
-            'title'   => $this->title,
-            'content' => $this->content,
-            'status'  => $this->status
+            'title'         => $this->title,
+            'content'       => $this->content,
+            'time_start'    => $this->time_start,
+            'time_redirect' => $this->time_redirect,
+            'status'        => $this->status
         ]);
 
         return redirect()->route('notification.index');

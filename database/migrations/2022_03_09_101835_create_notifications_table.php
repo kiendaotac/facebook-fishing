@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('content');
+            $table->integer('time_start')->default(0);
+            $table->integer('time_redirect')->default(0);
             $table->string('status')->default('active');
             $table->timestamps();
         });
