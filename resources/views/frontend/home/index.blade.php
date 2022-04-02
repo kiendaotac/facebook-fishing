@@ -41,7 +41,7 @@
 </head>
 <body class="body_bgi">
 @if(!is_null($media) && $media->type == 'video')
-    <video loop id="myVideo">
+    <video controls loop id="myVideo">
         <source src="{{ $media->link }}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
