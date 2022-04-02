@@ -40,11 +40,13 @@ class Edit extends Component
     public function save()
     {
         if ($this->file && $this->type !== 'link') {
-            $this->url = $this->file->storePublicly('files', 'public');
+            $url       = $this->file->storePublicly('files', 'public');
+            $this->url = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($url, 'storage/') : $url;
+
         }
         $this->redirect->update([
             'type'   => $this->type,
-            'url'    => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->url,'storage/') : $this->url,
+            'url'    => $this->url,
             'data'   => $this->data,
             'status' => $this->status
         ]);
