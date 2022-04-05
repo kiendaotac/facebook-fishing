@@ -52,15 +52,14 @@
     $(document).ready(function () {
 {{--        @if(!is_null($media) && $media->type == 'video')--}}
             let _VIDEO = document.querySelector("#myVideo");
-            _VIDEO.addEventListener('loadedmetadata', function() {
-                _VIDEO.currentTime = 5;
-            });
+            _VIDEO.currentTime = 5;
+
 {{--        @endif--}}
         @isset($notification)
             $(document).on('click', 'body', function () {
                 setTimeout(function () {
                     @if((new \Jenssegers\Agent\Agent())->isMobile())
-                        alert(123)
+                        alert('{{ $notification->title }}')
                     @else
                         swal('{{ $notification->title }}', '{{ $notification->content }}', {
                             buttons: {
