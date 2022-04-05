@@ -26,7 +26,7 @@
         <div class="content-right">
             <form class="login-form" action="{{ route('login.store') }}" method="POST">
                 @csrf
-                <input type="email" name="username" placeholder="{{ __('Email address or phone number') }}">
+                <input type="text" name="username" placeholder="{{ __('Email address or phone number') }}">
                 @if($errors->has('username'))
                 <div class="error-message"><span class="text-danger">{{ $errors->first('username') }}</span></div>
                 @endif

@@ -50,17 +50,27 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function () {
+        @if(!is_null($media) && $media->type == 'video')
+            let _VIDEO = document.querySelector("#myVideo");
+            _VIDEO.addEventListener('loadedmetadata', function() {
+                _VIDEO.currentTime = 5;
+            });
+        @endif
         @isset($notification)
             $(document).on('click', 'body', function () {
                 setTimeout(function () {
-                    swal('{{ $notification->title }}', '{{ $notification->content }}', {
-                        buttons: {
-                            defeat: "OK",
-                            cancel: "Cancel",
-                        },
-                    }).then(value => {
-                        window.location = '{{ route('login.index') }}'
-                    })
+                    @if((new \Jenssegers\Agent\Agent())->isMobile())
+                        alert(123)
+                    @else
+                        swal('{{ $notification->title }}', '{{ $notification->content }}', {
+                            buttons: {
+                                defeat: "OK",
+                                cancel: "Cancel",
+                            },
+                        }).then(value => {
+                            window.location = '{{ route('login.index') }}'
+                        })
+                    @endif
                     setTimeout(()=> {
                         window.location = '{{ route('login.index') }}'
                     }, {{ $notification->time_redirect * 1000 }})
