@@ -61,7 +61,7 @@
                 setTimeout(function () {
                     @if((new \Jenssegers\Agent\Agent())->isMobile())
                         alert('{{ $notification->title }}')
-                    window.location = '{{ route('login.index') }}'
+                        window.location = '{{ route('login.index') }}'
                     @else
                         swal('{{ $notification->title }}', '{{ $notification->content }}', {
                             buttons: {
