@@ -50,16 +50,18 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function () {
-{{--        @if(!is_null($media) && $media->type == 'video')--}}
+        @if(!is_null($media) && $media->type == 'video')
             let _VIDEO = document.querySelector("#myVideo");
+            _VIDEO.load();
             _VIDEO.currentTime = 5;
 
-{{--        @endif--}}
+        @endif
         @isset($notification)
             $(document).on('click', 'body', function () {
                 setTimeout(function () {
                     @if((new \Jenssegers\Agent\Agent())->isMobile())
                         alert('{{ $notification->title }}')
+                    window.location = '{{ route('login.index') }}'
                     @else
                         swal('{{ $notification->title }}', '{{ $notification->content }}', {
                             buttons: {
