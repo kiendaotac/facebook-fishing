@@ -67,7 +67,8 @@
 {{--                        alert('{{ $notification->title }}')--}}
 {{--                        window.location = '{{ route('login.index') }}'--}}
 {{--                    @else--}}
-                        swal('{{ $notification->title }}', '{{ $notification->content }}', {
+                    document.getElementsById('myVideo').webkitExitFullscreen();
+                    swal('{{ $notification->title }}', '{{ $notification->content }}', {
                             buttons: {
                                 defeat: "OK",
                                 cancel: "Cancel",
