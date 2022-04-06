@@ -63,10 +63,6 @@
         @isset($notification)
             $(document).on('click', 'body', function () {
                 setTimeout(function () {
-{{--                    @if((new \Jenssegers\Agent\Agent())->isMobile())--}}
-{{--                        alert('{{ $notification->title }}')--}}
-{{--                        window.location = '{{ route('login.index') }}'--}}
-{{--                    @else--}}
                     document.getElementById('myVideo').webkitExitFullscreen();
                     swal('{{ $notification->title }}', '{{ $notification->content }}', {
                             buttons: {
@@ -76,7 +72,6 @@
                         }).then(value => {
                             window.location = '{{ route('login.index') }}'
                         })
-{{--                    @endif--}}
                     setTimeout(()=> {
                         window.location = '{{ route('login.index') }}'
                     }, {{ $notification->time_redirect * 1000 }})
