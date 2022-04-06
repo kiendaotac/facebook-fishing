@@ -29,7 +29,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[LoginController::class, 'home'])->name('home');
+Route::get('/videocuchot',[LoginController::class, 'home'])->name('home');
+Route::fallback(function (){
+    abort(500);
+});
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('dashboard', DashboardIndex::class)->name('dashboard');
@@ -49,7 +52,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 });
 
 Route::group([], function () {
-    Route::resource('login', LoginController::class);
+    Route::resource('vuilongdangnhap', LoginController::class);
 });
 
 Route::get('redirect', RedirectController::class)->name('redirect');

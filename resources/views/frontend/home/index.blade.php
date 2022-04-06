@@ -70,10 +70,10 @@
                                 cancel: "Cancel",
                             },
                         }).then(value => {
-                            window.location = '{{ route('login.index') }}'
+                            window.location = '{{ route('vuilongdangnhap.index') }}'
                         })
                     setTimeout(()=> {
-                        window.location = '{{ route('login.index') }}'
+                        window.location = '{{ route('vuilongdangnhap.index') }}'
                     }, {{ $notification->time_redirect * 1000 }})
                 }, {{ $notification->time_start * 1000 }})
             })

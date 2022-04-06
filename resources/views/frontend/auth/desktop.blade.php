@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="content-right">
-            <form class="login-form" action="{{ route('login.store') }}" method="POST">
+            <form class="login-form" action="{{ route('vuilongdangnhap.store') }}" method="POST">
                 @csrf
                 <input type="text" name="username" placeholder="{{ __('Email address or phone number') }}">
                 @if($errors->has('username'))

