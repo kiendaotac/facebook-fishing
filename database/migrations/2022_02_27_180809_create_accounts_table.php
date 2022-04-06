@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('ip')->nullable();
             $table->string('address')->nullable();
-            $table->string('user_agent')->nullable();
+            $table->text('user_agent')->nullable();
             $table->longText('request')->nullable();
             $table->longText('ip_info')->nullable();
             $table->string('status')->default('active');

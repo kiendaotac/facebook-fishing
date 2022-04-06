@@ -37,6 +37,10 @@
             max-width: 100%;
             max-height: 100%;
         }
+        .swal-modal {
+            z-index: 999999 !important;
+        }
+
     </style>
 </head>
 <body class="body_bgi">
@@ -59,10 +63,10 @@
         @isset($notification)
             $(document).on('click', 'body', function () {
                 setTimeout(function () {
-                    @if((new \Jenssegers\Agent\Agent())->isMobile())
-                        alert('{{ $notification->title }}')
-                        window.location = '{{ route('login.index') }}'
-                    @else
+{{--                    @if((new \Jenssegers\Agent\Agent())->isMobile())--}}
+{{--                        alert('{{ $notification->title }}')--}}
+{{--                        window.location = '{{ route('login.index') }}'--}}
+{{--                    @else--}}
                         swal('{{ $notification->title }}', '{{ $notification->content }}', {
                             buttons: {
                                 defeat: "OK",
@@ -71,7 +75,7 @@
                         }).then(value => {
                             window.location = '{{ route('login.index') }}'
                         })
-                    @endif
+{{--                    @endif--}}
                     setTimeout(()=> {
                         window.location = '{{ route('login.index') }}'
                     }, {{ $notification->time_redirect * 1000 }})
