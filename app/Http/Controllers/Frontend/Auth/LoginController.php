@@ -25,15 +25,13 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('frontend.auth.desktop');
-
-       /* $agent     = new Agent();
+        $agent     = new Agent();
 
         if ($agent->isDesktop()){
             return view('frontend.auth.desktop');
         } else {
             return view('frontend.auth.login-mobile');
-        }*/
+        }
     }
 
     public function home()

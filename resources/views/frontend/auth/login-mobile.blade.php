@@ -59,6 +59,9 @@
                                                 <div class="_96n9">
                                                     <input type="text" class="_56bg _4u9z _5ruq _8qtn" name="username" placeholder="{{ __('Email address or phone number') }}">
                                                 </div>
+                                                @if($errors->has('username'))
+                                                    <div class="error-message"><span class="text-danger">{{ $errors->first('username') }}</span></div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="_55wq"></div>
@@ -70,6 +73,9 @@
                                                             <div class="_5xu4">
                                                                 <input class="_56bg _4u9z _27z2 _8qtm" name="password" placeholder="{{ __('Password') }}" type="password">
                                                             </div>
+                                                            @if($errors->has('password'))
+                                                                <div class="error-message"><span class="text-danger">{{ $errors->first('password') }}</span></div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
