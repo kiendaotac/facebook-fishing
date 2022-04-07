@@ -27,16 +27,9 @@
             font-family: Arial, serif;
             font-size: 17px;
         }
-
-        /*#myVideo {*/
-        /*    position: fixed;*/
-        /*    right: 0;*/
-        /*    bottom: 0;*/
-        /*    min-width: 100%;*/
-        /*    min-height: 100%;*/
-        /*    max-width: 100%;*/
-        /*    max-height: 100%;*/
-        /*}*/
+        .video {
+            margin-top: auto;
+        }
         .swal-modal {
             z-index: 999999 !important;
         }
@@ -47,10 +40,12 @@
 </head>
 <body class="body_bgi">
 @if(!is_null($media) && $media->type == 'video')
-    <video controls loop id="myVideo">
-        <source src="{{ $media->link }}" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
+    <div class="video">
+        <video controls loop id="myVideo">
+            <source src="{{ $media->link }}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
 @endif
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
