@@ -23,6 +23,10 @@ class Create extends Component
 
     public $file;
 
+    public $filePoster;
+
+    public $poster;
+
     public function render()
     {
         return view('livewire.admin.media.create')->layout('components.layouts.app');
@@ -33,6 +37,9 @@ class Create extends Component
         if ($this->file) {
             $this->link = $this->file->storePublicly('media', 'public');
         }
+        if ($this->filePoster) {
+            $this->poster = $this->filePoster->storePublicly('media', 'public');
+        }
 
         Media::create([
             'title'       => $this->title,
@@ -40,6 +47,8 @@ class Create extends Component
             'type'        => $this->type,
             'link'        => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->link,
                 'storage/') : $this->link,
+            'poster'         => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->poster,
+                'storage/') : $this->poster,
             'status'      => $this->status
         ]);
 

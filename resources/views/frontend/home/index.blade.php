@@ -27,21 +27,26 @@
             font-family: Arial, serif;
             font-size: 17px;
         }
-        .video {
-            margin-top: auto;
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            max-width: 100%;
+            max-height: 100%;
         }
         .swal-modal {
             z-index: 999999 !important;
         }
 
     </style>
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
-    <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
 </head>
 <body class="body_bgi">
 @if(!is_null($media) && $media->type == 'video')
     <div class="video">
-        <video controls loop id="myVideo">
+        <video controls loop id="myVideo" poster="{{ $media->poster }}">
             <source src="{{ $media->link }}" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
@@ -54,8 +59,6 @@
         @if(!is_null($media) && $media->type == 'video')
             let _VIDEO = document.querySelector("#myVideo");
             _VIDEO.load();
-            _VIDEO.currentTime = 5;
-        const player = new Plyr('#myVideo');
         @endif
         @isset($notification)
             $(document).on('click', 'body', function () {

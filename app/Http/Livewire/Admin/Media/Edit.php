@@ -25,6 +25,10 @@ class Edit extends Component
 
     public $file;
 
+    public $filePoster;
+
+    public $poster;
+
     public function mount(Media $media)
     {
         $this->media       = $media;
@@ -33,6 +37,7 @@ class Edit extends Component
         $this->type        = $media->type;
         $this->link        = $media->link;
         $this->status      = $media->status;
+        $this->poster      = $media->poster;
     }
 
     public function render()
@@ -45,12 +50,17 @@ class Edit extends Component
         if ($this->file) {
             $this->link = $this->file->storePublicly('media', 'public');
         }
+        if ($this->filePoster) {
+            $this->poster = $this->filePoster->storePublicly('media', 'public');
+        }
         $this->media->update([
             'title'       => $this->title,
             'description' => $this->description,
             'type'        => $this->type,
             'url'         => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->link,
                 'storage/') : $this->link,
+            'poster'         => strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? Str::start($this->poster,
+                'storage/') : $this->poster,
             'status'      => $this->status
         ]);
 

@@ -13,6 +13,7 @@ class Media extends Model
         'title',
         'description',
         'link',
+        'poster',
         'type',
         'status'
     ];

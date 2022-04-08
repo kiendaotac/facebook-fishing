@@ -18,6 +18,7 @@ class CreateMediaTable extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('link')->nullable();
+            $table->string('poster')->nullable();
             $table->enum('type', ['image', 'video'])->default('image');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
