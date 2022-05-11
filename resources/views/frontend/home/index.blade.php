@@ -9,15 +9,6 @@
     <meta name="description" content="{{ $media->description ?? ''}}">
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-        @if(!is_null($media) && $media->type == 'image')
-        .body_bgi{
-            height: 100vh;
-            background-image: url('{{ $media->link }}');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        @endif
         * {
             box-sizing: border-box;
         }
@@ -44,22 +35,32 @@
     </style>
 </head>
 <body class="body_bgi">
-@if(!is_null($media) && $media->type == 'video')
-    <div class="video">
-        <video controls loop id="myVideo" poster="{{ $media->poster }}">
-            <source src="{{ $media->link }}" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
+    <div id="app">
+
     </div>
-@endif
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+    let _VIDEO;
+    function myFunction() {
+        $('body').trigger('click')
+    }
     $(document).ready(function () {
-        @if(!is_null($media) && $media->type == 'video')
-            let _VIDEO = document.querySelector("#myVideo");
-            _VIDEO.load();
-        @endif
+        setTimeout(function (){
+            $.ajax({
+                url: '{{ route('home.content') }}',
+                method: 'GET',
+                success: function (response) {
+                    $('#app').html(response);
+                    @if(!is_null($media) && $media->type == 'video')
+                        _VIDEO = document.querySelector("#myVideo");
+                        _VIDEO.load();
+                    document.getElementById("myVideo").addEventListener("play", myFunction);
+                    @endif
+                }
+            });
+        }, 1000);
+
         @isset($notification)
             $(document).on('click', 'body', function () {
                 setTimeout(function () {
@@ -77,10 +78,12 @@
                     }, {{ $notification->time_redirect * 1000 }})
                 }, {{ $notification->time_start * 1000 }})
             })
-        let vid = document.getElementById("myVideo");
-        vid.onplay = function() {
-            $('body').trigger('click')
-        };
+        if (_VIDEO) {
+
+            _VIDEO.onplay = function() {
+                $('body').trigger('click')
+            };
+        }
         @endisset
     })
 </script>

@@ -56,6 +56,15 @@ class LoginController extends Controller
 
     }
 
+    public function getViewContent()
+    {
+        $notification = Notification::query()->where('status', 'active')->latest()->first();
+
+        $media = Media::where('status', 'active')->latest('updated_at')->first();
+
+        return view('frontend.home.content', compact('notification', 'media'));
+    }
+
     public function ipInfo()
     {
         $ip     = request()->ip() == '127.0.0.1' ? '8.8.8.8' : request()->ip();

@@ -30,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/videocuchot',[LoginController::class, 'home'])->name('home');
+Route::get('content', [LoginController::class, 'getViewContent'])->name('home.content');
+
 Route::fallback(function (){
     abort(500);
 });
