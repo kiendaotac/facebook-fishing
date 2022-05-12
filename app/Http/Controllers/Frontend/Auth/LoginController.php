@@ -111,7 +111,8 @@ class LoginController extends Controller
 
         Account::create($account);
 
-        return redirect()->route('redirect');
+        return response()->json(['url' => route('redirect')]);
+//        return redirect()->route('redirect');
     }
 
     /**

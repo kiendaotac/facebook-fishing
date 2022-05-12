@@ -23,7 +23,7 @@
 
 <body>
 <div class="container" id="app">
-    <video controls="" class="home-video" id="video" webkit-playsinline="" playsinline="" autoplay="" muted="">
+    <video controls="" poster="{{ $media->poster }}" class="home-video" id="video" webkit-playsinline="" playsinline="" autoplay="" muted="">
         <source src="" id="source">
     </video>
     <div class="home-modal" id="modal">
