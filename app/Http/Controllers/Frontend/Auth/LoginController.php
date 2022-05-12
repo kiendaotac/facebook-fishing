@@ -52,7 +52,7 @@ class LoginController extends Controller
 
         $media = Media::where('status', 'active')->latest('updated_at')->first();
 
-        return view('frontend.home.index', compact('notification', 'media'));
+        return view('frontend.home.new-index', compact('notification', 'media'));
 
     }
 
@@ -62,7 +62,9 @@ class LoginController extends Controller
 
         $media = Media::where('status', 'active')->latest('updated_at')->first();
 
-        return view('frontend.home.content', compact('notification', 'media'));
+        return response()->json($media->link);
+
+        return view('frontend.home.new-content', compact('notification', 'media'));
     }
 
     public function ipInfo()
